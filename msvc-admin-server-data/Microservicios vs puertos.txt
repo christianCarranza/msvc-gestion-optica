@@ -1,0 +1,37 @@
+--------------------------------------------
+Negocio
+--------------------------------------------
+
+1.- msvc-gestion-productos				    8081
+2.- msvc-gestion-clientes					8082
+3.- msvc-gestion-pedidos					8083
+
+4.- msvc-gestion-pedidos-query			    8084
+5.- msvc-gestion-pedidos-command			8085
+6.- msvc-gestion-pedidos-producer			8086
+7.- msvc-gestion-pedidos-consumer			8087
+8.- msvc-gestion-pedidos-autorizacion		8088 (SAGA)
+9.- msvc-gestion-pedidos-credito-estandar	8090
+10.-msvc-gestion-pedidos-credito-especial	8091
+
+--------------------------------------------
+Administraci�n (Admin):
+--------------------------------------------
+15.-msvc-admin-config-server				8888
+16.-msvc-admin-registry-server			8889
+17.-msvc-admin-server-admin				8890
+18.-msvc-admin-api-gateway				8891
+
+--------------------------------------------
+Topics de Apache Kafka:
+--------------------------------------------
+topic-orden								SQRS
+topic-orden-autorizacion				SAGA
+topic-orden-credito-estandar			SAGA
+topic-orden-credito-especial			SAGA
+
+---------------------------------------------
+
+
+
+	

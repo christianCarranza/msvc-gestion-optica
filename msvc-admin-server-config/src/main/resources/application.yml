@@ -1,0 +1,28 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: msvc-admin-server-config
+  #Configuracion Local
+  #  profiles:
+  #    active: native
+  #  cloud:
+  #    config:
+  #      server:
+  #        native:
+  #          searchLocations: file:\\\C:\Users\CARRANZA\Desktop\ProyectoTesis\msvc-gestion-optica\ms-admin-server-data
+
+  #Configuracion Cloud (git)
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/christianCarranza/msvc-gestion-optica.git
+          search-paths:
+            - msvc-admin-server-data
+          username: carranzachristian61@gmail.com
+          password: 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
+          clone-on-start: true
+          force-pull: true
+          timeout: 5
+          default-label: master
