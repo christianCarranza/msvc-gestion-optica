@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
 public class MalformedHeaderException extends BadRequestException {
   private static final long serialVersionUID = -5468379005406300806L;

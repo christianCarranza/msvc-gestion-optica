@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.utils;
+package org.multilens.msvc.optica.gestionproductos.utils;
 
 public class ConstantesUtil {
 
@@ -16,9 +16,11 @@ public class ConstantesUtil {
   public static final Integer IND_EDO_INACTIVO = 2;
   public static final Integer IND_ACT_ACTIVO = 0;
   public static final Integer IND_ACT_INACTIVO = 9;
-  public static final String RPTA_SUCCESS = "success";
-  public static final String RPTA_ERROR = "error";
   public static final String EXCEL_MEDIA_TYPE = "application/vnd.ms-excel";
   public static final String EXCEL_HEADER = "attachment; filename=reporte.xlsx";
+
+  //Path
+  public static final String  API_PRODUCTO="/v1/productos";
+  public static final String  API_CATEGORIA="/v1/categorias";
 
 }

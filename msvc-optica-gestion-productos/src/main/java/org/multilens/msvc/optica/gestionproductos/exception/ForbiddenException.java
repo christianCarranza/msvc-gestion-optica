@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
 public class ForbiddenException extends RuntimeException {
   private static final long serialVersionUID = -8036250919018921540L;

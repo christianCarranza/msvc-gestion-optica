@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
 public class UnknownException extends RuntimeException {
 

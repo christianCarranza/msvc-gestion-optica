@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
 public class BadRequestException extends RuntimeException {
   private static final long serialVersionUID = -367545608214467341L;

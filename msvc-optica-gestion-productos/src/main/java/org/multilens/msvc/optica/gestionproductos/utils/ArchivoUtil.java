@@ -1,8 +1,7 @@
-package pe.gob.vuce.zee.utils;
+package org.multilens.msvc.optica.gestionproductos.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import pe.gob.vuce.zee.exception.ConflictException;
-import pe.gob.vuce.zee.exception.IdentityException;
+import org.multilens.msvc.optica.gestionproductos.exception.ConflictException;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;

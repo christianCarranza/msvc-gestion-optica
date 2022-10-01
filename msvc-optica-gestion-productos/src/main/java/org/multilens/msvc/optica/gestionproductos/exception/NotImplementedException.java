@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
 public class NotImplementedException extends RuntimeException {
   private static final long serialVersionUID = -6362773132614685055L;

@@ -1,12 +1,10 @@
-package org.multilens.msvc.optica.gestionproductos.service.service;
-
-import org.multilens.msvc.optica.gestionproductos.service.exception.ServiceException;
+package org.multilens.msvc.optica.gestionproductos.service;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface GenericService<T>{
-    List<T> findByLike(T t) throws ServiceException;
+    List<T> findByLike(T t);
 
-    Optional<T> findById(Long id) throws ServiceException;
+    Optional<T> findById(Long id);
 }

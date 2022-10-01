@@ -1,6 +1,8 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
-import pe.gob.vuce.zee.utils.ConstantesUtil;
+
+import org.multilens.msvc.optica.gestionproductos.utils.CodeEnum;
+import org.multilens.msvc.optica.gestionproductos.utils.ConstantesUtil;
 
 public class ErrorMessage {
 
@@ -11,7 +13,7 @@ public class ErrorMessage {
   private String path;
 
   public ErrorMessage(Exception exception, Integer code, String path) {
-    this.status = ConstantesUtil.RPTA_ERROR;
+    this.status = String.valueOf(CodeEnum.ERROR);
     this.code = code;
     this.error = exception.getClass().getSimpleName();
     this.message = exception.getMessage();

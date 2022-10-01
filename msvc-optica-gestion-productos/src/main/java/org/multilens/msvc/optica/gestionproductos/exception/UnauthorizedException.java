@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.exception;
+package org.multilens.msvc.optica.gestionproductos.exception;
 
 public class UnauthorizedException extends RuntimeException {
   private static final long serialVersionUID = 673291884773230683L;

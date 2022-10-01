@@ -1,4 +1,4 @@
-package pe.gob.vuce.zee.utils;
+package org.multilens.msvc.optica.gestionproductos.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
