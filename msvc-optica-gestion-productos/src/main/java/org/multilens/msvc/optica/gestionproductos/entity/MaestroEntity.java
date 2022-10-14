@@ -9,15 +9,15 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "categorias")
-public class CategoriaEntity  extends AuditoriaEntity  implements Serializable {
+public class MaestroEntity extends AuditoriaEntity  implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -40,10 +40,6 @@ public class CategoriaEntity  extends AuditoriaEntity  implements Serializable {
 
     @Column(name = "vista", nullable = false)
     private Integer vista;
-
-//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, mappedBy = "categoria")
-    @OneToMany(mappedBy = "categoria", targetEntity = SubCategoriaTituloEntity.class)
-    private List<SubCategoriaTituloEntity> subCategoriaTitulo;
 
     private static final long serialVersionUID = -2170897015344177815L;
 

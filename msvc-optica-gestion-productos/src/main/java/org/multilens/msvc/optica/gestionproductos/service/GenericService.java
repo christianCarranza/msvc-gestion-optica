@@ -1,10 +1,16 @@
 package org.multilens.msvc.optica.gestionproductos.service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 public interface GenericService<T>{
-    List<T> findByLike(T t);
+    List<T> findAll();
 
-    Optional<T> findById(Long id);
+    T findById(UUID id);
+
+    T save(T t);
+
+    T update(UUID id, T t);
+
+    void delete (UUID id, Integer estado);
 }

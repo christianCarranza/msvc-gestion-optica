@@ -18,9 +18,9 @@ Negocio
 Administraci�n (Admin):
 --------------------------------------------
 15.-msvc-admin-config-server				8888
-16.-msvc-admin-registry-server			8889
-17.-msvc-admin-server-admin				8890
-18.-msvc-admin-api-gateway				8891
+16.-msvc-admin-registry-server			    8889
+17.-msvc-admin-server-admin				    8890
+18.-msvc-admin-api-gateway				    8891
 
 --------------------------------------------
 Topics de Apache Kafka:

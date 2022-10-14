@@ -2,7 +2,6 @@ package org.multilens.msvc.optica.gestionproductos.exception;
 
 
 import org.multilens.msvc.optica.gestionproductos.utils.CodeEnum;
-import org.multilens.msvc.optica.gestionproductos.utils.ConstantesUtil;
 
 public class ErrorMessage {
 

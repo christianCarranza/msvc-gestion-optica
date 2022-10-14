@@ -9,22 +9,26 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "categorias")
-public class CategoriaEntity  extends AuditoriaEntity  implements Serializable {
+@Table(name = "sub_categorias")
+public class SubCategoriaEntity  extends AuditoriaEntity  implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id_categoria", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Column(name = "id_sub_categoria", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_sub_categoria_titulo", nullable = false)
+    private SubCategoriaTituloEntity subCategoriaTitulos;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -35,16 +39,11 @@ public class CategoriaEntity  extends AuditoriaEntity  implements Serializable {
     @Column(name = "imagen", nullable = false)
     private String imagen;
 
-    @Column(name = "icono", nullable = false)
-    private String icono;
+    @Column(name = "inventario", nullable = false)
+    private String inventario;
 
     @Column(name = "vista", nullable = false)
     private Integer vista;
 
-//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, mappedBy = "categoria")
-    @OneToMany(mappedBy = "categoria", targetEntity = SubCategoriaTituloEntity.class)
-    private List<SubCategoriaTituloEntity> subCategoriaTitulo;
-
-    private static final long serialVersionUID = -2170897015344177815L;
 
 }
