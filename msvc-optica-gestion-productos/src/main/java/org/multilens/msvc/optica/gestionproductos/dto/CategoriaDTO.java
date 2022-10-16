@@ -1,21 +1,23 @@
 package org.multilens.msvc.optica.gestionproductos.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class CategoriaDTO extends AuditoriaDTO   implements Serializable {
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class CategoriaDTO extends AuditoriaDTO{
     private UUID id;
     private String nombre;
     private String url;
     private String imagen;
     private String icono;
     private Integer vista;
-    private List<SubCategoriaTituloDTO> subCategoriaTitulo;
+    private Set<SubCategoriaTituloDTO> subCategoriaTitulo = new HashSet<>();
 }

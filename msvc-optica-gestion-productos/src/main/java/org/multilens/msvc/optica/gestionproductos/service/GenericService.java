@@ -12,5 +12,5 @@ public interface GenericService<T>{
 
     T update(UUID id, T t);
 
-    void delete (UUID id, Integer estado);
+    Boolean delete (UUID id, T t);
 }

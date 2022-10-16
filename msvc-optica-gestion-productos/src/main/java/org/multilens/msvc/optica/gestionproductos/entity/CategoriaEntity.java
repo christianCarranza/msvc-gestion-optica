@@ -1,20 +1,22 @@
 package org.multilens.msvc.optica.gestionproductos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "categorias")
 public class CategoriaEntity  extends AuditoriaEntity  implements Serializable {
@@ -42,8 +44,8 @@ public class CategoriaEntity  extends AuditoriaEntity  implements Serializable {
     private Integer vista;
 
 //    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true, mappedBy = "categoria")
-    @OneToMany(mappedBy = "categoria", targetEntity = SubCategoriaTituloEntity.class)
-    private List<SubCategoriaTituloEntity> subCategoriaTitulo;
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<SubCategoriaTituloEntity> subCategoriaTitulo = new HashSet<>();
 
     private static final long serialVersionUID = -2170897015344177815L;
 

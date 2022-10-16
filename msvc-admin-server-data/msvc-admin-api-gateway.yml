@@ -16,6 +16,18 @@ spring:
       discovery.locator:    #A           
           enabled: true           
           lowerCaseServiceId: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+            
 #      routes:
 #      - id: id-ms-gestion-productos
 #        uri: lb://MS-GESTION-PRODUCTOS

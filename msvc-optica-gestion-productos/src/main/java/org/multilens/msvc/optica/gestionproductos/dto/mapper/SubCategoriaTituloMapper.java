@@ -1,6 +1,7 @@
 package org.multilens.msvc.optica.gestionproductos.dto.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.multilens.msvc.optica.gestionproductos.dto.SubCategoriaTituloDTO;
@@ -13,6 +14,7 @@ public interface SubCategoriaTituloMapper {
 
     SubCategoriaTituloEntity postDtoToEntity(SubCategoriaTituloDTO dto);
 
+    @Mapping(target = "categoria", ignore = true)
     SubCategoriaTituloDTO entityToGetDto(SubCategoriaTituloEntity entity);
 
 }

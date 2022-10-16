@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -78,9 +79,18 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public void delete(UUID id, Integer estado) {
+    public Boolean delete(UUID id, CategoriaDTO categoriaDTO) {
         CategoriaEntity entity = this.categoriaRepository.findById(id).orElseThrow(RuntimeException::new);
-        entity.setEstado(estado); // 0 = Inactivo, 1 = Activo
+        entity.setFechaModificacion(LocalDateTime.now());
+        entity.setUsuarioModificacion(categoriaDTO.getUsuarioCreacion());
+        entity.setEstado(categoriaDTO.getEstado()); // 0 = Inactivo, 1 = Activo
         this.categoriaRepository.save(entity);
+        return true;
+    }
+
+    @Override
+    public List<CategoriaDTO> findByLikeNombre(String nombre) {
+        Optional<CategoriaEntity> lstCategoriaEntity = this.categoriaRepository.findByLikeNombre(nombre);
+        return lstCategoriaEntity.stream().map(categoriaMapper::entityToGetDto).collect(Collectors.toList());
     }
 }

@@ -2,6 +2,7 @@ package org.multilens.msvc.optica.gestionproductos.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -26,8 +27,9 @@ public class SubCategoriaTituloEntity   extends AuditoriaEntity  implements Seri
     @Type(type = "uuid-char")
     private UUID id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CategoriaEntity.class)
+    //@JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_categoria", nullable = false)
     private CategoriaEntity categoria;
 
