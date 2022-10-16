@@ -27,6 +27,7 @@ spring:
             - PUT
             - DELETE
             - OPTIONS
+            - PATCH
 #      routes:
 #      - id: id-ms-gestion-productos
 #        uri: lb://MS-GESTION-PRODUCTOS
