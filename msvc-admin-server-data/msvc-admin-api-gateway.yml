@@ -19,7 +19,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowedOrigins: "http://localhost:4200"
             allowedHeaders: "*"
             allowedMethods:
             - GET
@@ -27,7 +27,6 @@ spring:
             - PUT
             - DELETE
             - OPTIONS
-            
 #      routes:
 #      - id: id-ms-gestion-productos
 #        uri: lb://MS-GESTION-PRODUCTOS
