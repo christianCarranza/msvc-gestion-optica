@@ -7,6 +7,9 @@ import org.multilens.msvc.optica.gestionproductos.exception.NotFoundException;
 import org.multilens.msvc.optica.gestionproductos.repository.CategoriaRepository;
 import org.multilens.msvc.optica.gestionproductos.repository.SubCategoriaTituloRepository;
 import org.multilens.msvc.optica.gestionproductos.service.CategoriaService;
+import org.multilens.msvc.optica.gestionproductos.utils.FechasUtil;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,8 +20,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
-
-
     private final CategoriaRepository categoriaRepository;
     private final SubCategoriaTituloRepository subCategoriaTituloRepository;
 
@@ -29,6 +30,14 @@ public class CategoriaServiceImpl implements CategoriaService {
         this.subCategoriaTituloRepository = subCategoriaTituloRepository;
     }
 
+
+    @Override
+    public Page<CategoriaDTO> findAllPage(Pageable paginador) {
+        Page<CategoriaEntity> lstCategoriaEntity = categoriaRepository.findAllPage(paginador);
+        List<CategoriaDTO>  result = lstCategoriaEntity.stream().map(categoriaMapper::entityToGetDto).collect(Collectors.toList());
+
+        return (Page<CategoriaDTO>) FechasUtil.paginate(result, paginador, lstCategoriaEntity.getTotalElements());
+    }
 
     @Override
     public List<CategoriaDTO> findAll() {
@@ -50,6 +59,11 @@ public class CategoriaServiceImpl implements CategoriaService {
     public CategoriaDTO save(CategoriaDTO categoriaDTO) {
         var categoriaEntity = categoriaMapper.postDtoToEntity(categoriaDTO);
         var save = this.categoriaRepository.save(categoriaEntity);
+        categoriaDTO.getSubCategoriaTitulo().forEach(subCategoriaTituloDTO -> {
+            subCategoriaTituloDTO.setId(save.getId());
+        });
+        this.subCategoriaTituloRepository.saveAll(categoriaMapper.postDtoToEntity(categoriaDTO).getSubCategoriaTitulo());
+
         return categoriaMapper.entityToGetDto(save);
     }
 

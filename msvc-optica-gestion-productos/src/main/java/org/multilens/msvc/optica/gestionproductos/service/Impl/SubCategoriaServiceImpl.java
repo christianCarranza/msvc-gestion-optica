@@ -1,5 +1,6 @@
 package org.multilens.msvc.optica.gestionproductos.service.Impl;
 
+import org.multilens.msvc.optica.gestionproductos.dto.CategoriaDTO;
 import org.multilens.msvc.optica.gestionproductos.dto.SubCategoriaDTO;
 import org.multilens.msvc.optica.gestionproductos.dto.mapper.SubCategoriaMapper;
 import org.multilens.msvc.optica.gestionproductos.entity.CategoriaEntity;
@@ -7,6 +8,9 @@ import org.multilens.msvc.optica.gestionproductos.entity.SubCategoriaEntity;
 import org.multilens.msvc.optica.gestionproductos.exception.NotFoundException;
 import org.multilens.msvc.optica.gestionproductos.repository.SubCategoriaRepository;
 import org.multilens.msvc.optica.gestionproductos.service.SubCategoriaService;
+import org.multilens.msvc.optica.gestionproductos.utils.FechasUtil;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,6 +27,14 @@ public class SubCategoriaServiceImpl implements SubCategoriaService {
 
     public SubCategoriaServiceImpl(SubCategoriaRepository subCategoriaRepository) {
         this.subCategoriaRepository = subCategoriaRepository;
+    }
+
+    @Override
+    public Page<SubCategoriaDTO> findAllPage(Pageable paginador) {
+        Page<SubCategoriaEntity> LstSubCategoriaEntity = subCategoriaRepository.findAllPage(paginador);
+        List<SubCategoriaDTO>  result = LstSubCategoriaEntity.stream().map(subCategoriaMapper::entityToGetDto).collect(Collectors.toList());
+
+        return (Page<SubCategoriaDTO>) FechasUtil.paginate(result, paginador, LstSubCategoriaEntity.getTotalElements());
     }
 
     @Override

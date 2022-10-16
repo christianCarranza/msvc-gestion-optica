@@ -22,5 +22,6 @@ public class ConstantesUtil {
   //Path
   public static final String  API_PRODUCTO="/v1/productos";
   public static final String  API_CATEGORIA="/v1/categorias";
-
+  public static final String  API_SUBCATEGORIA="/v1/sub-categorias";
+  public static final String  API_DISPUTA="/v1/disputas";
 }

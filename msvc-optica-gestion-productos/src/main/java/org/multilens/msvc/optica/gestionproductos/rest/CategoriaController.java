@@ -6,6 +6,8 @@ import org.multilens.msvc.optica.gestionproductos.service.CategoriaService;
 import org.multilens.msvc.optica.gestionproductos.utils.CodeEnum;
 import org.multilens.msvc.optica.gestionproductos.utils.ConstantesUtil;
 import org.multilens.msvc.optica.gestionproductos.utils.CustomResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,20 +26,31 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
+    @GetMapping("/findAllPage")
+    @ResponseBody
+    public ResponseEntity<CustomResponse> findAllPage(Pageable paginador){
+        Page<CategoriaDTO> lstCategoriaDTO= this.categoriaService.findAllPage(paginador);
+        if (lstCategoriaDTO.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstCategoriaDTO, "Información encontrada");
+        return new ResponseEntity<>(rpta, HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<CustomResponse> findAll(){
         List<CategoriaDTO> lstCategoriaDTO= this.categoriaService.findAll();
         if (lstCategoriaDTO.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        CustomResponse rpta = new CustomResponse(ConstantesUtil.TITULO_ALERTAS, lstCategoriaDTO, "Información encontrada");
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstCategoriaDTO, "Información encontrada");
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<CustomResponse> findById(@PathVariable UUID id) {
         var persona = this.categoriaService.findById(id);
-        CustomResponse rpta = new CustomResponse(ConstantesUtil.TITULO_ALERTAS, persona, null);
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), persona, null);
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
@@ -49,7 +62,7 @@ public class CategoriaController {
         if (lstCategoriaDTO.isEmpty()) {
             rpta = new CustomResponse(String.valueOf(HttpStatus.NO_CONTENT.value()), "No se encontraron registros");
         }else{
-            rpta = new CustomResponse(ConstantesUtil.TITULO_ALERTAS, lstCategoriaDTO, "Información encontrada");
+            rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstCategoriaDTO, "Información encontrada");
         }
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
@@ -65,12 +78,12 @@ public class CategoriaController {
     @ResponseBody
     public ResponseEntity<CustomResponse> update( @PathVariable UUID id,  @RequestBody CategoriaDTO categoriaDTO) {
         CategoriaDTO result = this.categoriaService.update(id, categoriaDTO);
-        CustomResponse rpta = new CustomResponse(ConstantesUtil.TITULO_ALERTAS, result, "Categoria actualizada correctamente.");
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), result, "Categoria actualizada correctamente.");
         return new ResponseEntity<>(rpta, HttpStatus.OK);
 
     }
 
-    @PutMapping("delete/{id}/{estado}")
+    @PutMapping("delete/{id}")
     public ResponseEntity<CustomResponse> delete( @PathVariable UUID id,  @RequestBody CategoriaDTO categoriaDTO) {
         Boolean result = this.categoriaService.delete(id, categoriaDTO);
         CustomResponse rpta = new CustomResponse(Boolean.TRUE.equals(result)?"1":"0", Boolean.TRUE.equals(result) ? "Eliminado correctamente":"Error al eliminar");

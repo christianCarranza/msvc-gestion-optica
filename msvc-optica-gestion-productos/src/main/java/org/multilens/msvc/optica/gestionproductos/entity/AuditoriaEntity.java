@@ -19,7 +19,7 @@ public class AuditoriaEntity {
     @Column(name = "estado", nullable = false)
     private Integer estado = 0;
 
-    @Column(name = "fecha_creación", nullable = false)
+    @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
     @Column(name = "usuario_creacion", nullable = false,  columnDefinition = "VARCHAR(36)")
@@ -29,8 +29,7 @@ public class AuditoriaEntity {
     @Column(name = "fecha_modificacion")
     private LocalDateTime fechaModificacion;
 
-    @Column(name = "usuario_modificación",  columnDefinition = "VARCHAR(36)")
+    @Column(name = "usuario_modificacion",  columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID usuarioModificacion;
-
 }

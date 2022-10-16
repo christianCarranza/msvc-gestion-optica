@@ -16,7 +16,7 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "categorias")
+@Table(name = "productos")
 public class ProductoEntity extends AuditoriaEntity  implements Serializable {
 
     @Id
