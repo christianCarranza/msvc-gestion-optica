@@ -88,6 +88,31 @@ public class ProductoServiceImpl  implements ProductoService {
         if(updated.getStock() != null){
             entity.setStock(updated.getStock());
         }
+        if(updated.getCupon() != null){
+            entity.setCupon(updated.getCupon());
+        }
+        if(updated.getTopBanner() != null){
+            entity.setTopBanner(updated.getTopBanner());
+        }
+        if(updated.getSlider() != null){
+            entity.setSlider(updated.getSlider());
+        }
+        if(updated.getEspecificaciones() != null){
+            entity.setEspecificaciones(updated.getEspecificaciones());
+        }
+        if(updated.getDetalles() != null){
+            entity.setDetalles(updated.getDetalles());
+        }
+        if(updated.getDescripcion() != null){
+            entity.setDescripcion(updated.getDescripcion());
+        }
+        if(updated.getDefaultBanner() != null){
+            entity.setDefaultBanner(updated.getDefaultBanner());
+        }
+        if(updated.getVerticalSlider() != null){
+            entity.setVerticalSlider(updated.getVerticalSlider());
+        }
+
         entity.setFechaModificacion(LocalDateTime.now());
         entity.setUsuarioModificacion(updated.getUsuarioCreacion());
         ProductoRepository.save(entity);

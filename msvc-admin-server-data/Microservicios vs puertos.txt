@@ -3,7 +3,7 @@ Negocio
 --------------------------------------------
 
 1.- msvc-gestion-productos				    8081
-2.- msvc-gestion-clientes					8082
+2.- msvc-optica-gestion-usuarios    		8082
 3.- msvc-gestion-pedidos					8083
 3.- msvc-gestion-promociones				8084
 

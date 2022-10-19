@@ -48,6 +48,37 @@ public class ProductoEntity extends AuditoriaEntity  implements Serializable {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cupon", nullable = false)
+    private CuponEntity cupon;
+
+    @ManyToOne
+    @JoinColumn(name = "id_promocion", nullable = false)
+    private PromocionEntity promocion;
+
+    @OneToOne
+    @JoinColumn(name = "id_top_banner", nullable = false)
+    private BannerEntity topBanner;
+
+    @OneToOne
+    @JoinColumn(name = "id_horizontal_slider", nullable = false)
+    private SliderEntity Slider;
+
+    @Column(name = "especificaciones", nullable = false)
+    private String especificaciones;
+
+    @Column(name = "detalles", nullable = false)
+    private String detalles;
+
+    @Column(name = "descripcion", nullable = false)
+    private String descripcion;
+
+    @Column(name = "default_banner", nullable = false)
+    private String defaultBanner;
+
+    @Column(name = "vertical_slider", nullable = false)
+    private String verticalSlider;
+
     private static final long serialVersionUID = -2170897015344177815L;
 
 }

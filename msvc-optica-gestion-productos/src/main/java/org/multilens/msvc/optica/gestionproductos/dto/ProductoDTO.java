@@ -20,4 +20,12 @@ public class ProductoDTO extends AuditoriaDTO {
     private String imagen;
     private Double precio;
     private Integer stock;
+    private CuponDTO cupon;
+    private BannerDTO topBanner;
+    private SliderDTO Slider;
+    private String especificaciones;
+    private String detalles;
+    private String descripcion;
+    private String defaultBanner;
+    private String verticalSlider;
 }
