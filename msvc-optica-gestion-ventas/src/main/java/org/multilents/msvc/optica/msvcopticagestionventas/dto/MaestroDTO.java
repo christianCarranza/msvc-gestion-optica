@@ -13,9 +13,7 @@ import java.util.UUID;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class MaestroDTO extends AuditoriaDTO {
     private UUID id;
-    private String nombre;
-    private String url;
-    private String imagen;
-    private String icono;
-    private Integer vista;
+    private Integer correlativo;
+    private Integer prefijo;
+    private Integer descripcion;
 }

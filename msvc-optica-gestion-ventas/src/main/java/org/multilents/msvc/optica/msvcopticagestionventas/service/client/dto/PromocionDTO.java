@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.multilents.msvc.optica.msvcopticagestionventas.dto.AuditoriaDTO;
-import org.multilents.msvc.optica.msvcopticagestionventas.dto.MaestroDTO;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

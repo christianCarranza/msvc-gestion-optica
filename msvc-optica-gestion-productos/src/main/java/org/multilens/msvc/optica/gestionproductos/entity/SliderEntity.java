@@ -1,5 +1,6 @@
 package org.multilens.msvc.optica.gestionproductos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Table(name = "horizontal_slider")
 public class SliderEntity  extends AuditoriaEntity  implements Serializable {
 

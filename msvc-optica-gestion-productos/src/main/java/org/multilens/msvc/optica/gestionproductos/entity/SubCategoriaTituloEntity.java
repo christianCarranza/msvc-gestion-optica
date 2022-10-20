@@ -2,6 +2,7 @@ package org.multilens.msvc.optica.gestionproductos.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "sub_categoria_titulos")
 public class SubCategoriaTituloEntity   extends AuditoriaEntity  implements Serializable {

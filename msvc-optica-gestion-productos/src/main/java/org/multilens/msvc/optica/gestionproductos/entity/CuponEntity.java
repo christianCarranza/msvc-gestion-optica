@@ -1,5 +1,6 @@
 package org.multilens.msvc.optica.gestionproductos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "cupones")
 public class CuponEntity extends AuditoriaEntity  implements Serializable {

@@ -16,30 +16,24 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "categorias")
+@Table(name = "maestros")
 public class MaestroEntity extends AuditoriaEntity  implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id_categoria", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Column(name = "id_maestro", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
+    @Column(name = "correlativo", nullable = false)
+    private Integer correlativo;
 
-    @Column(name = "url", nullable = false)
-    private String url;
+    @Column(name = "prefijo", nullable = false)
+    private Integer prefijo;
 
-    @Column(name = "imagen", nullable = false)
-    private String imagen;
-
-    @Column(name = "icono", nullable = false)
-    private String icono;
-
-    @Column(name = "vista", nullable = false)
-    private Integer vista;
+    @Column(name = "descripcion", nullable = false)
+    private Integer descripcion;
 
     private static final long serialVersionUID = -2170897015344177815L;
 
