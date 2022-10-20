@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface UsuarioRepository  extends JpaRepository<UsuarioEntity, UUID> {
 
     @Query("select c from UsuarioEntity c where UPPER(c.correo) like UPPER(:correo) ORDER BY c.correo")
-    public Optional<UsuarioEntity> findByLikeCorreo(@Param("nombre") String correo);
+    public Optional<UsuarioEntity> findByLikeCorreo(@Param("correo") String correo);
 
     @Query("select c from UsuarioEntity c where c.estado=1")
     public Page<UsuarioEntity> findAllPage(Pageable pageable);

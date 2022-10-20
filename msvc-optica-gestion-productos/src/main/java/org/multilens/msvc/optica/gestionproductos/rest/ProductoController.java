@@ -54,6 +54,13 @@ public class ProductoController {
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
+    @GetMapping("findByIdActive/{id}")
+    public ResponseEntity<CustomResponse> findByIdActive(@PathVariable UUID id) {
+        var persona = this.productoService.findByIdActive(id);
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), persona, null);
+        return new ResponseEntity<>(rpta, HttpStatus.OK);
+    }
+
     @GetMapping("/byNombre")
     @ResponseBody
     public ResponseEntity<CustomResponse> findByLikeNombre(@RequestParam(name = "nombre", defaultValue = "") String nombre){

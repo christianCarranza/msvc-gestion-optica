@@ -19,4 +19,7 @@ public interface ProductoRepository   extends JpaRepository<ProductoEntity, UUID
 
     @Query("select c from ProductoEntity c where c.estado=1")
     Page<ProductoEntity> findAllPage(Pageable pageable);
+
+    @Query("select c from ProductoEntity c where c.id = :id and  c.estado=1")
+    ProductoEntity findByIdActive(UUID id);
 }

@@ -54,6 +54,16 @@ public class ProductoServiceImpl  implements ProductoService {
     }
 
     @Override
+    public ProductoDTO findByIdActive(UUID id) {
+
+        ProductoEntity producto = this.ProductoRepository.findByIdActive(id);
+        if(producto.getId() == null){
+            throw new NotFoundException("No existe un registro para el ID suministrado.");
+        }
+        return productoMapper.entityToGetDto(producto);
+    }
+
+    @Override
     public ProductoDTO save(ProductoDTO productoDTO) {
         var productoEntity = productoMapper.postDtoToEntity(productoDTO);
         var save = this.ProductoRepository.save(productoEntity);
