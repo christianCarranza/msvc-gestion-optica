@@ -37,6 +37,17 @@ public class ProductoController {
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
+    @GetMapping("/findAllPageActive")
+    @ResponseBody
+    public ResponseEntity<CustomResponse> findAllPageActive(Pageable paginador){
+        Page<ProductoDTO> lstProductoDTO= this.productoService.findAllPageActive(paginador);
+        if (lstProductoDTO.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstProductoDTO, "Información encontrada");
+        return new ResponseEntity<>(rpta, HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<CustomResponse> findAll(){
         List<ProductoDTO> lstProductoDTO= this.productoService.findAll();

@@ -1,6 +1,8 @@
 package org.multilents.msvc.optica.msvcopticagestionventas.utils;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.UUID;
 
 @Setter
 @Getter
+@AllArgsConstructor
 public class CustomResponse {
 
     private String status; // success, info, error

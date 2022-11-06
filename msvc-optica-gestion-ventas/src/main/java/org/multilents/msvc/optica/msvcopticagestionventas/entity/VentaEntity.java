@@ -1,9 +1,6 @@
 package org.multilents.msvc.optica.msvcopticagestionventas.entity;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -15,6 +12,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "ventas")
 public class VentaEntity extends AuditoriaEntity  implements Serializable {

@@ -33,7 +33,7 @@ public class VentaController {
         if (lstVentaDTO.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstVentaDTO, ConstantesUtil.MENSAJE_RESPUESTA_EXITOSA);
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstVentaDTO, "Información encontrada");
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
@@ -43,7 +43,7 @@ public class VentaController {
         if (lstVentaDTO.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstVentaDTO,  ConstantesUtil.MENSAJE_RESPUESTA_EXITOSA);
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstVentaDTO,  "Información encontrada");
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 

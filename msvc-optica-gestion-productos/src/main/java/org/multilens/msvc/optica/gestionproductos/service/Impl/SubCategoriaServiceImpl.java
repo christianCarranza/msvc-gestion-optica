@@ -75,6 +75,9 @@ public class SubCategoriaServiceImpl implements SubCategoriaService {
         if(updated.getVista() != null){
             entity.setVista(updated.getVista());
         }
+        if(updated.getSubCategoriaTitulos() != null){
+            entity.setSubCategoriaTitulos(updated.getSubCategoriaTitulos());
+        }
         entity.setFechaModificacion(LocalDateTime.now());
         entity.setUsuarioModificacion(updated.getUsuarioCreacion());
         SubCategoriaEntity subCategoriaEntity = this.subCategoriaRepository.save(entity);

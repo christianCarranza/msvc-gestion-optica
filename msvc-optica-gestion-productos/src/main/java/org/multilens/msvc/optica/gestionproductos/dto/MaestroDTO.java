@@ -15,5 +15,5 @@ public class MaestroDTO extends AuditoriaDTO {
     private UUID id;
     private Integer correlativo;
     private Integer prefijo;
-    private Integer descripcion;
+    private String descripcion;
 }

@@ -1,9 +1,6 @@
 package org.multilents.msvc.optica.msvcopticagestionventas.entity;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -15,6 +12,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "maestros")
 public class MaestroEntity extends AuditoriaEntity  implements Serializable {
@@ -33,7 +31,7 @@ public class MaestroEntity extends AuditoriaEntity  implements Serializable {
     private Integer prefijo;
 
     @Column(name = "descripcion", nullable = false)
-    private Integer descripcion;
+    private String descripcion;
 
     private static final long serialVersionUID = -2170897015344177815L;
 

@@ -1,12 +1,13 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.4'
-	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'org.springframework.boot' version '2.5.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
 group = 'org.multilents.msvc.optica'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -18,7 +19,7 @@ repositories {
 }
 
 ext {
-  set('springCloudVersion', "2020.0.4")
+	set('springCloudVersion', "2020.0.4")
 }
 
 dependencies {

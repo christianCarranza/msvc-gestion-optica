@@ -51,11 +51,11 @@ public class ProductoEntity extends AuditoriaEntity  implements Serializable {
     private Integer stock;
 
     @ManyToOne
-    @JoinColumn(name = "id_cupon", nullable = false)
+    @JoinColumn(name = "id_cupon")
     private CuponEntity cupon;
 
     @ManyToOne
-    @JoinColumn(name = "id_promocion", nullable = false)
+    @JoinColumn(name = "id_promocion")
     private PromocionEntity promocion;
 
     @OneToOne

@@ -37,7 +37,6 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 	implementation 'org.mapstruct:mapstruct:1.5.2.Final'

@@ -22,5 +22,5 @@ public class ConstantesUtil {
   public static final String EXCEL_HEADER = "attachment; filename=reporte.xlsx";
 
   //Path
-  public static final String  API_VENTAS="/v1/usuarios";
+  public static final String  API_VENTAS="/v1/ventas";
 }

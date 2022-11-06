@@ -33,7 +33,7 @@ public class MaestroEntity extends AuditoriaEntity  implements Serializable {
     private Integer prefijo;
 
     @Column(name = "descripcion", nullable = false)
-    private Integer descripcion;
+    private String descripcion;
 
     private static final long serialVersionUID = -2170897015344177815L;
 

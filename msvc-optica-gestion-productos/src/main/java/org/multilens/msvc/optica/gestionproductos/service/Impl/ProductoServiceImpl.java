@@ -140,6 +140,14 @@ public class ProductoServiceImpl  implements ProductoService {
     }
 
     @Override
+    public Page<ProductoDTO> findAllPageActive(Pageable paginador) {
+        Page<ProductoEntity> lstProductoEntity = ProductoRepository.findAllPageActive(paginador);
+        List<ProductoDTO> result = lstProductoEntity.stream().map(productoMapper::entityToGetDto).collect(Collectors.toList());
+
+        return (Page<ProductoDTO>) FechasUtil.paginate(result, paginador, lstProductoEntity.getTotalElements());
+    }
+
+    @Override
     public List<ProductoDTO> findByLikeNombre(String nombre) {
         Optional<ProductoEntity> lstProductoEntity = this.ProductoRepository.findByLikeNombre(nombre);
         return lstProductoEntity.stream().map(productoMapper::entityToGetDto).collect(Collectors.toList());

@@ -17,9 +17,12 @@ public interface ProductoRepository   extends JpaRepository<ProductoEntity, UUID
     @Query("select c from ProductoEntity c where UPPER(c.nombre) like UPPER(:nombre) ORDER BY c.nombre")
     Optional<ProductoEntity> findByLikeNombre(@Param("nombre") String nombre);
 
-    @Query("select c from ProductoEntity c where c.estado=1")
+    @Query("select p from ProductoEntity p ORDER BY p.nombre")
     Page<ProductoEntity> findAllPage(Pageable pageable);
 
-    @Query("select c from ProductoEntity c where c.id = :id and  c.estado=1")
+    @Query("select p from ProductoEntity p where p.estado=1 ORDER BY p.nombre")
+    Page<ProductoEntity> findAllPageActive(Pageable pageable);
+
+    @Query("select p from ProductoEntity p where p.id = :id and  p.estado=1 ORDER BY p.nombre")
     ProductoEntity findByIdActive(UUID id);
 }
