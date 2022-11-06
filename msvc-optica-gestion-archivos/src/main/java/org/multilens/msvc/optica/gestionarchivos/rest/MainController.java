@@ -1,10 +1,10 @@
 package org.multilens.msvc.optica.gestionarchivos.rest;
 
+import lombok.extern.slf4j.Slf4j;
 import org.multilens.msvc.optica.gestionarchivos.exception.NotFoundException;
 import org.multilens.msvc.optica.gestionarchivos.service.Impl.CloudinaryService;
 import org.multilens.msvc.optica.gestionarchivos.utils.CodeEnum;
 import org.multilens.msvc.optica.gestionarchivos.utils.CustomResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +16,17 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
+
+@Slf4j
 @RestController
 @RequestMapping("/cloudinary")
-@CrossOrigin
 public class MainController {
 
-    @Autowired
-    CloudinaryService cloudinaryService;
+    private final CloudinaryService cloudinaryService;
 
+    public MainController(CloudinaryService cloudinaryService) {
+        this.cloudinaryService = cloudinaryService;
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<CustomResponse> upload(@RequestParam MultipartFile multipartFile)throws IOException {
