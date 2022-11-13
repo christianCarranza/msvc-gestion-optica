@@ -1,5 +1,6 @@
 package org.multilens.msvc.optica.gestionproductos.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
@@ -18,5 +19,6 @@ public class PromocionDTO extends AuditoriaDTO {
     private UUID id;
     private MaestroDTO tipo;
     private Double descuento;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaTermino;
 }

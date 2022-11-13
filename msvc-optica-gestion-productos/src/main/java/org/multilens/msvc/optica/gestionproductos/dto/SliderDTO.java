@@ -19,4 +19,5 @@ public class SliderDTO  extends AuditoriaDTO {
     private String h33Tag;
     private String h34sTag;
     private String buttonTag;
+    private String imgTag;
 }

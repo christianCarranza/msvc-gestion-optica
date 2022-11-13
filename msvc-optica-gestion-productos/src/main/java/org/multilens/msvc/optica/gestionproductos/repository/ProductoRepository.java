@@ -23,6 +23,6 @@ public interface ProductoRepository   extends JpaRepository<ProductoEntity, UUID
     @Query("select p from ProductoEntity p where p.estado=1 ORDER BY p.nombre")
     Page<ProductoEntity> findAllPageActive(Pageable pageable);
 
-    @Query("select p from ProductoEntity p where p.id = :id and  p.estado=1 ORDER BY p.nombre")
+    @Query("select p from ProductoEntity p where p.id = :id and  p.estado=1 and p.subCategoria.subCategoriaTitulos.estado = 1 ORDER BY p.nombre")
     ProductoEntity findByIdActive(UUID id);
 }

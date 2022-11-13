@@ -41,7 +41,7 @@ public class SubCategoriaController {
 
     @GetMapping
     public ResponseEntity<CustomResponse> findAll(){
-        List<SubCategoriaDTO>  lstSubCategoriaDTO= this.subCategoriaService.findAll();
+        List<SubCategoriaDTO>  lstSubCategoriaDTO = this.subCategoriaService.findAll();
         if (lstSubCategoriaDTO.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -56,16 +56,23 @@ public class SubCategoriaController {
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
+    @GetMapping("findByCategoria/{id}")
+    public ResponseEntity<CustomResponse> findByCategoria(@PathVariable UUID id) {
+        List<SubCategoriaDTO>  lstSubCategoriaDTO = this.subCategoriaService.findByCategoria(id);
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), lstSubCategoriaDTO, "Información encontrada");
+        return new ResponseEntity<>(rpta, HttpStatus.OK);
+    }
+
     @GetMapping("/byNombre")
     @ResponseBody
     public ResponseEntity<CustomResponse> findByLikeNombre(@RequestParam(name = "nombre", defaultValue = "") String nombre){
-//        List<CategoriaDTO> lstCategoriaDTO= this.subCategoriaService.findByLikeNombre(nombre);
+        List<SubCategoriaDTO> lstCategoriaDTO= this.subCategoriaService.findByLikeNombre(nombre);
         CustomResponse rpta = null;
-//        if (lstCategoriaDTO.isEmpty()) {
-//            rpta = new CustomResponse(String.valueOf(HttpStatus.NO_CONTENT.value()), "No se encontraron registros");
-//        }else{
-//            rpta = new CustomResponse(ConstantesUtil.TITULO_ALERTAS, lstCategoriaDTO, "Información encontrada");
-//        }
+        if (lstCategoriaDTO.isEmpty()) {
+            rpta = new CustomResponse(String.valueOf(HttpStatus.NO_CONTENT.value()), "No se encontraron registros");
+        }else{
+            rpta = new CustomResponse(ConstantesUtil.TITULO_ALERTAS, lstCategoriaDTO, "Información encontrada");
+        }
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 

@@ -6,8 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -15,5 +18,11 @@ public interface SubCategoriaRepository   extends JpaRepository<SubCategoriaEnti
 
     @Query("select c from SubCategoriaEntity c")
     Page<SubCategoriaEntity> findAllPage(Pageable pageable);
+
+    @Query("select c from SubCategoriaEntity c where UPPER(c.nombre) like UPPER(:nombre) ORDER BY c.nombre")
+    Optional<SubCategoriaEntity> findByLikeNombre(@Param("nombre") String nombre);
+
+    @Query("select c from SubCategoriaEntity c where c.subCategoriaTitulos.categoria.id = :categoria")
+    List<SubCategoriaEntity> findByCategoria(@Param("categoria") UUID categoria);
 
 }

@@ -1,10 +1,10 @@
 package org.multilens.msvc.optica.gestionproductos.service.Impl;
 
 import org.multilens.msvc.optica.gestionproductos.dto.ProductoDTO;
-import org.multilens.msvc.optica.gestionproductos.dto.mapper.ProductoMapper;
+import org.multilens.msvc.optica.gestionproductos.dto.mapper.*;
 import org.multilens.msvc.optica.gestionproductos.entity.ProductoEntity;
 import org.multilens.msvc.optica.gestionproductos.exception.NotFoundException;
-import org.multilens.msvc.optica.gestionproductos.repository.ProductoRepository;
+import org.multilens.msvc.optica.gestionproductos.repository.*;
 import org.multilens.msvc.optica.gestionproductos.service.ProductoService;
 import org.multilens.msvc.optica.gestionproductos.utils.FechasUtil;
 import org.springframework.data.domain.Page;
@@ -21,11 +21,29 @@ import java.util.stream.Collectors;
 public class ProductoServiceImpl  implements ProductoService {
 
     private final ProductoRepository ProductoRepository;
+    private final ResenaRepository resenaRepository;
+    private final DetalleRepository detalleRepository;
+    private final GaleriaRepository galeriaRepository;
+    private final SliderRepository sliderRepository;
+    private final BannerRepository bannerRepository;
+    private final PromocionRepository promocionRepository;
 
     private static final ProductoMapper productoMapper = ProductoMapper.INSTANCE;
+    private static final GaleriaMapper galeriaMapper = GaleriaMapper.INSTANCE.INSTANCE;
+    private static final DetalleMapper detalleMapper = DetalleMapper.INSTANCE;
+    private static final ResenaMapper resenaMapper = ResenaMapper.INSTANCE;
+    private static final SliderMapper sliderMapper = SliderMapper.INSTANCE;
+    private static final BannerMapper bannerMapper = BannerMapper.INSTANCE;
+    private static final PromocionMapper promocionMapper = PromocionMapper.INSTANCE;
 
-    public ProductoServiceImpl(org.multilens.msvc.optica.gestionproductos.repository.ProductoRepository productoRepository) {
+    public ProductoServiceImpl(org.multilens.msvc.optica.gestionproductos.repository.ProductoRepository productoRepository, ResenaRepository resenaRepository, DetalleRepository detalleRepository, GaleriaRepository galeriaRepository, SliderRepository sliderRepository, BannerRepository bannerRepository, PromocionRepository promocionRepository) {
         ProductoRepository = productoRepository;
+        this.resenaRepository = resenaRepository;
+        this.detalleRepository = detalleRepository;
+        this.galeriaRepository = galeriaRepository;
+        this.sliderRepository = sliderRepository;
+        this.bannerRepository = bannerRepository;
+        this.promocionRepository = promocionRepository;
     }
 
 
@@ -65,12 +83,57 @@ public class ProductoServiceImpl  implements ProductoService {
 
     @Override
     public ProductoDTO save(ProductoDTO productoDTO) {
+
+        var galery = productoDTO.getGaleria();
+        var resen = productoDTO.getResena();
+        var deta = productoDTO.getDetalle();
+        productoDTO.setGaleria(null);
+        productoDTO.setResena(null);
+        productoDTO.setDetalle(null);
+
         var productoEntity = productoMapper.postDtoToEntity(productoDTO);
+        var slide = this.sliderRepository.save(productoEntity.getSlider());
+        var ban = this.bannerRepository.save(productoEntity.getTopBanner());
+        var promo = this.promocionRepository.save(productoEntity.getPromocion());
+        productoEntity.setSlider(slide);
+        productoEntity.setTopBanner(ban);
+        productoEntity.setPromocion(promo);
+
         var save = this.ProductoRepository.save(productoEntity);
+        var dto = productoMapper.entityToGetDto(save);
 
 
+        ProductoDTO productoDTO1 = new ProductoDTO();
+        productoDTO1.setId(save.getId());
 
-        return productoMapper.entityToGetDto(save);
+        if(!galery.isEmpty()){
+            galery.forEach(gal -> {
+                gal.setProducto(productoDTO1);
+            });
+            var galeryEntity = galery.stream().map(galeriaMapper::entityToGetDto).collect(Collectors.toList());
+            var saveGalery = this.galeriaRepository.saveAll(galeryEntity);
+        }
+        if (!resen.isEmpty()) {
+            resen.forEach(res -> {
+                res.setProducto(dto);
+            });
+            var resenEntity = resen.stream().map(resenaMapper::entityToGetDto).collect(Collectors.toList());
+            var saveResen = this.resenaRepository.saveAll(resenEntity);
+        }
+        if (!deta.isEmpty()) {
+            deta.forEach(det -> {
+                det.setProducto(productoDTO1);
+            });
+            var detaEntity = deta.stream().map(detalleMapper::entityToGetDto).collect(Collectors.toList());
+            var saveDeta = this.detalleRepository.saveAll(detaEntity);
+        }
+
+        dto.setGaleria(galery);
+        dto.setResena(resen);
+        dto.setDetalle(deta);
+
+
+        return dto;
     }
 
     @Override
@@ -109,9 +172,6 @@ public class ProductoServiceImpl  implements ProductoService {
         }
         if(updated.getEspecificaciones() != null){
             entity.setEspecificaciones(updated.getEspecificaciones());
-        }
-        if(updated.getDetalles() != null){
-            entity.setDetalles(updated.getDetalles());
         }
         if(updated.getDescripcion() != null){
             entity.setDescripcion(updated.getDescripcion());

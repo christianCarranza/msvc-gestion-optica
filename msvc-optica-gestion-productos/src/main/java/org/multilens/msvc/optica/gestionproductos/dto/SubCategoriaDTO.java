@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Data
-public class SubCategoriaDTO implements Serializable {
+public class SubCategoriaDTO extends AuditoriaDTO implements Serializable {
     private UUID id;
     private SubCategoriaTituloDTO subCategoriaTitulos;
     private String nombre;

@@ -38,7 +38,7 @@ public class SubCategoriaEntity  extends AuditoriaEntity  implements Serializabl
     @Column(name = "url", nullable = false)
     private String url;
 
-    @Column(name = "imagen", nullable = false)
+    @Column(name = "imagen")
     private String imagen;
 
     @Column(name = "inventario", nullable = false)

@@ -1,8 +1,7 @@
 package org.multilens.msvc.optica.gestionproductos.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,6 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -21,25 +19,26 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-@Table(name = "promociones")
-public class PromocionEntity extends AuditoriaEntity  implements Serializable {
+@Table(name = "resenas")
+public class ResenaEntity  extends AuditoriaEntity  implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id_promocion", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Column(name = "id_resena", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_tipo", nullable = false)
-    private MaestroEntity tipo;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_producto", nullable = false)
+    private ProductoEntity producto;
 
-    @Column(name = "descuento", nullable = false)
-    private Double descuento;
+    @Column(name = "calificacion", nullable = false)
+    private Integer calificacion;
 
-    @Column(name = "fecha_termino", nullable = false)
+    @Column(name = "comentario", nullable = false)
+    private String comentario;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime fechaTermino;
+
 }

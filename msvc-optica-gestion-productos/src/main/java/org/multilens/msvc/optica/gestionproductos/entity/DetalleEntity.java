@@ -17,13 +17,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name = "galerias")
-public class GaleriaEntity  extends AuditoriaEntity  implements Serializable {
+@Table(name = "detalles")
+public class DetalleEntity   extends AuditoriaEntity  implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id_galeria", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Column(name = "id_detalle", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
 
@@ -31,6 +31,9 @@ public class GaleriaEntity  extends AuditoriaEntity  implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_producto", nullable = false)
     private ProductoEntity producto;
+
+    @Column(name = "titulo", nullable = false)
+    private String titulo;
 
     @Column(name = "descripcion", nullable = false)
     private String descripcion;

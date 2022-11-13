@@ -58,9 +58,12 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     public CategoriaDTO save(CategoriaDTO categoriaDTO) {
         var categoriaEntity = categoriaMapper.postDtoToEntity(categoriaDTO);
+        categoriaEntity.setSubCategoriaTitulo(null);
         var save = this.categoriaRepository.save(categoriaEntity);
         categoriaDTO.getSubCategoriaTitulo().forEach(subCategoriaTituloDTO -> {
-            subCategoriaTituloDTO.setId(save.getId());
+            CategoriaDTO categoria = new CategoriaDTO();
+            categoria.setId(save.getId());
+            subCategoriaTituloDTO.setCategoria(categoria);
         });
         this.subCategoriaTituloRepository.saveAll(categoriaMapper.postDtoToEntity(categoriaDTO).getSubCategoriaTitulo());
 

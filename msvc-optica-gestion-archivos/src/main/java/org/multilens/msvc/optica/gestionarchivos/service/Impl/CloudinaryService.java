@@ -1,6 +1,7 @@
 package org.multilens.msvc.optica.gestionarchivos.service.Impl;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,15 +27,15 @@ public class CloudinaryService {
         cloudinary = new Cloudinary(valuesMap);
     }
 
-    public Map upload(MultipartFile multipartFile) throws IOException {
+    public Map upload(MultipartFile multipartFile, String url) throws IOException {
         File file = convert(multipartFile);
-        Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+        Map result = cloudinary.uploader().upload(file, ObjectUtils.asMap("public_id", url," overwrite " , true  ));
         file.delete();
         return result;
     }
 
-    public Map delete(UUID id) throws IOException {
-        Map result = cloudinary.uploader().destroy(String.valueOf(id), ObjectUtils.emptyMap());
+    public Map delete(String id) throws IOException {
+        Map result = cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
         return result;
     }
 

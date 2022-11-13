@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -92,5 +93,17 @@ public class SubCategoriaServiceImpl implements SubCategoriaService {
         subCategoriaEntity.setUsuarioModificacion(subCategoriaEntity.getUsuarioCreacion());
         this.subCategoriaRepository.save(subCategoriaEntity);
         return true;
+    }
+
+    @Override
+    public List<SubCategoriaDTO> findByLikeNombre(String nombre) {
+        Optional<SubCategoriaEntity> lstCategoriaEntity = this.subCategoriaRepository.findByLikeNombre(nombre);
+        return lstCategoriaEntity.stream().map(subCategoriaMapper::entityToGetDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SubCategoriaDTO> findByCategoria(UUID id) {
+        List<SubCategoriaEntity> lstCategoriaEntity = this.subCategoriaRepository.findByCategoria(id);
+        return lstCategoriaEntity.stream().map(subCategoriaMapper::entityToGetDto).collect(Collectors.toList());
     }
 }

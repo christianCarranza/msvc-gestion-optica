@@ -29,19 +29,19 @@ public class MainController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<CustomResponse> upload(@RequestParam MultipartFile multipartFile)throws IOException {
+    public ResponseEntity<CustomResponse> upload(@RequestParam MultipartFile multipartFile, @RequestParam String url)throws IOException {
         BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
         if(bi == null){
             throw new NotFoundException("imagen no válida");
         }
-        Map result = cloudinaryService.upload(multipartFile);
+        Map result = cloudinaryService.upload(multipartFile, url);
 
-        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), "imagen subida");
+        CustomResponse rpta = new CustomResponse(String.valueOf(CodeEnum.SUCCESS), result,"imagen subida");
         return new ResponseEntity<>(rpta, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") UUID id)throws IOException {
+    public ResponseEntity<?> delete(@PathVariable("id") String id)throws IOException {
         Map result = cloudinaryService.delete(id);
         CustomResponse rpta = new CustomResponse(Boolean.TRUE.equals(result)?"1":"0", Boolean.TRUE.equals(result) ? "imagen eliminada":"Error al eliminar");
         return new ResponseEntity<>(rpta, HttpStatus.OK);

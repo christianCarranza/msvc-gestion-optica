@@ -1,5 +1,6 @@
 package org.multilens.msvc.optica.gestionproductos.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
@@ -20,6 +21,7 @@ public class AuditoriaEntity {
     private Integer estado = 0;
 
     @Column(name = "fecha_creacion", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
     @Column(name = "usuario_creacion", nullable = false,  columnDefinition = "VARCHAR(36)")
@@ -27,6 +29,7 @@ public class AuditoriaEntity {
     private UUID usuarioCreacion;
 
     @Column(name = "fecha_modificacion")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaModificacion;
 
     @Column(name = "usuario_modificacion",  columnDefinition = "VARCHAR(36)")
