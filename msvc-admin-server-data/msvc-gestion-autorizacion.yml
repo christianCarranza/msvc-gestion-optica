@@ -1,14 +1,14 @@
 server:
-  port: 8081
+  port: 8088
     
 # My SQL #
 spring:
   jpa:
-      show-sql: true
-      #hibernate:
-        #ddl-auto: update
+    show-sql: true
+    hibernate:
+      ddl-auto: update
   datasource:
-    url: jdbc:mysql://host.docker.internal:3306/db_msvc_optica_gestion_productos?serverTimezone=GMT-6
+    url: jdbc:mysql://localhost:3306/db_msvc_optica_gestion_usuarios?serverTimezone=GMT-6
     username: root
     password: sasa
     driverClassName: com.mysql.cj.jdbc.Driver
